@@ -13,11 +13,9 @@
         <link rel="stylesheet" href="css/leaflet.photon.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
         <style>
-        html, body, #map {
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            margin: 0;
+        #map {
+            width: 2260px;
+            height: 1243px;
         }
         </style>
         <title></title>
@@ -42,7 +40,7 @@
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[54.101973255852656,18.43303813098751],[60.858792716198614,41.38086838831413]]);
+        }).fitBounds([[55.395145573549485,24.39644837624737],[58.816944009348845,35.87036350491069]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -150,6 +148,9 @@
         function pop__1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(String(feature.properties['fid']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
                         <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(String(feature.properties['id']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -195,14 +196,14 @@
                         <td class="visible-with-data" id="Название" colspan="2"><strong>Название</strong><br />' + (feature.properties['Название'] !== null ? autolinker.link(String(feature.properties['Название']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Категория'] !== null ? autolinker.link(String(feature.properties['Категория']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">Категория</th>\
+                        <td>' + (feature.properties['Категория'] !== null ? autolinker.link(String(feature.properties['Категория']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Район'] !== null ? autolinker.link(String(feature.properties['Район']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Адрес</th>\
-                        <td>' + (feature.properties['Адрес'] !== null ? autolinker.link(String(feature.properties['Адрес']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Адрес'] !== null ? autolinker.link(String(feature.properties['Адрес']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Телефон</th>\
@@ -223,7 +224,8 @@
                         <td colspan="2">' + (feature.properties['Долгота'] !== null ? autolinker.link(String(feature.properties['Долгота']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>Путь_к_фото</strong><br />' + (feature.properties['Путь_к_фото'] !== null ? '<img src="images/' + String(feature.properties['Путь_к_фото']).replace(/[\\/:]/g, '_').trim().replace(/'/g, '\'').replace(/"/g, '&quot;') + '">' : '') + '</td>\
+                        <th scope="row">Путь_к_фото</th>\
+                        <td>' + (feature.properties['Путь_к_фото'] !== null ? '<img src="images/' + String(feature.properties['Путь_к_фото']).replace(/[\\/:]/g, '_').trim().replace(/'/g, '\'').replace(/"/g, '&quot;') + '">' : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -407,6 +409,6 @@
             }
         });
         setBounds();
-        </script>        
+        </script>
     </body>
 </html>
